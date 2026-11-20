@@ -33,9 +33,9 @@ import os from "node:os";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
-const TARGET = (process.env.SKILLPIO_TARGET ?? process.env.BSKILL_TARGET) || "claude-sonnet-5-5";
-const ASSESSOR = (process.env.SKILLPIO_ASSESSOR ?? process.env.BSKILL_ASSESSOR) || "claude-opus-5-5";
-const CONCURRENCY = Number((process.env.SKILLPIO_CONCURRENCY ?? process.env.BSKILL_CONCURRENCY) || 6);
+const TARGET = process.env.SKILLPIO_TARGET || "claude-sonnet-5-5";
+const ASSESSOR = process.env.SKILLPIO_ASSESSOR || "claude-opus-5-5";
+const CONCURRENCY = Number(process.env.SKILLPIO_CONCURRENCY || 6);
 
 const [cmd, skill, ...rest] = process.argv.slice(2);
 const opt = Object.fromEntries(
@@ -51,7 +51,7 @@ if (!cmd || !skill) {
   process.exit(1);
 }
 // Work folders live in SKILLPIO_SKILLS_ROOT, or ./skills under the folder you run from.
-const dir = path.join((process.env.SKILLPIO_SKILLS_ROOT ?? process.env.BSKILL_SKILLS_ROOT) || path.join(process.cwd(), "skills"), skill);
+const dir = path.join(process.env.SKILLPIO_SKILLS_ROOT || path.join(process.cwd(), "skills"), skill);
 const phaseDir = path.join(dir, "runs", phase);
 const read = (f) => fs.readFileSync(path.join(dir, f), "utf8");
 // `scope` also runs on skills with no test data (it says so in SCOPE.md), so missing facts or probes are allowed there.
@@ -103,7 +103,7 @@ function claude(args, { cwd, input } = {}) {
 // answer, and that role runs through it instead of the claude CLI. Examples:
 //   SKILLPIO_TARGET_CMD='codex exec -'      SKILLPIO_TARGET_CMD='gemini -p'      SKILLPIO_TARGET_CMD='ollama run qwen3'
 // The skill text and instructions are then put at the top of the prompt, since a generic command has no system-prompt flag.
-const CMD = { target: (process.env.SKILLPIO_TARGET_CMD ?? process.env.BSKILL_TARGET_CMD), assessor: (process.env.SKILLPIO_ASSESSOR_CMD ?? process.env.BSKILL_ASSESSOR_CMD) };
+const CMD = { target: process.env.SKILLPIO_TARGET_CMD, assessor: process.env.SKILLPIO_ASSESSOR_CMD };
 const roleName = (role) => CMD[role] ? `\`${CMD[role]}\`` : role === "target" ? TARGET : ASSESSOR;
 
 function shellCmd(cmd, input) {
