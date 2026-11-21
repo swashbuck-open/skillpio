@@ -8,6 +8,8 @@ description: Use when the user wants to make, improve or test a Claude skill abo
 A skill should contain only what the model gets wrong. Skillpio measures that first, then writes the skill,
 then checks the skill fixed the gaps without breaking anything the model already knew.
 
+**Disclaimer.** Skillpio and the skills it makes use AI and can be wrong, and are not professional advice; the user checks every skill and its output before relying on it, and pays for model usage. Tell the user this with the cost note before the first build. Full text: the Disclaimer in README.md.
+
 Run every command from the user's project folder. Work goes in `./skills/<name>/` unless
 `SKILLPIO_SKILLS_ROOT` is set. `SG` below means `node <this skill's folder>/scripts/skillpio.mjs`.
 

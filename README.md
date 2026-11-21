@@ -66,6 +66,22 @@ A full build with the default statistical design takes about 3,000–5,000 model
 150–1,000. To roughly halve the cost, use Sonnet as the grader (`SKILLPIO_ASSESSOR=claude-sonnet-5-5`). The grading is
 then less strict.
 
+## Disclaimer
+
+Skillpio is provided "as is", without warranties of any kind. See sections 7 and 8 of the licence.
+
+Skillpio uses AI models, and AI output can be wrong. A skill made with Skillpio, and the answers it gives, can be
+wrong, incomplete or out of date, even after testing. Check every skill and its output before relying on it.
+
+Skillpio and the skills it makes are not professional advice. For tax, legal, financial, medical or similar
+matters, ask a qualified professional.
+
+Model usage costs, and following your model provider's terms, are your responsibility.
+
+To the extent the law allows, Swashbuck Pty Ltd and other contributors are not liable for any loss or damage
+arising from Skillpio or skills made with it. Nothing here excludes, restricts or modifies rights you have under
+the Australian Consumer Law or any other law that cannot be excluded.
+
 ## Licence
 
 Apache License 2.0. See `LICENSE` and `NOTICE`.
